@@ -180,6 +180,24 @@ describe('Form Submission Test', function(){
       });
   });
 
+  // Test empty occupation
+  it('Invalid occupation', function(done){
+    superagent.post('http://localhost:8888/v1/submission/').accept('application/json').type('form')
+      .send({
+        name: 'Sandor Major',
+        email: 'airborn22@gmail.com',
+        occupation: '',
+        birthday: '1989-03-22'
+      })
+      .end(function(error, response) {
+        expect(error).to.eql(null);
+        expect(response.body).to.be.an('object');
+        expect(response.body.success).to.eql(true);
+
+        done();
+      });
+  });
+
   // Test age under 18
   it('Under 18', function(done){
     superagent.post('http://localhost:8888/v1/submission/').accept('application/json').type('form')
