@@ -40,7 +40,7 @@ server = restify.createServer({
   }
 });
 
-server.use(restify.bodyParser({ mapParams: false }));
+server.use(restify.bodyParser({ mapParams: true }));
 server.use(restify.queryParser());
 server.use(restify.gzipResponse());
 server.pre(restify.pre.sanitizePath());
