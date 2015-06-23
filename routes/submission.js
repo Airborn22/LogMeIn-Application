@@ -13,6 +13,11 @@ var handler = function(req, res, next) {
     req.assert('occupation', 'Email field is required').isIn(occupationManager.find(req.params.occupation));
   }
 
+  // Check if age is over 18
+  var eighteenYearsAgo = new Date();
+  eighteenYearsAgo.setYear(eighteenYearsAgo.getYear()-18);
+  req.assert('birthday', 'You must be over 18').isDate().isBefore(eighteenYearsAgo);
+
   var errors = req.validationErrors();
   if (errors) {
     res.send(500, {
