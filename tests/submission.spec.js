@@ -179,4 +179,55 @@ describe('Form Submission Test', function(){
         done();
       });
   });
+
+  // Test age under 18
+  it('Under 18', function(done){
+    superagent.post('http://localhost:8888/v1/submission/').accept('application/json').type('form')
+      .send({
+        name: 'Sandor Major',
+        email: 'airborn22@gmail.com',
+        occupation: 'Programmer',
+        birthday: '2014-03-22'
+      })
+      .end(function(error, response) {
+        expect(error).not.to.eql(null);
+        expect(error.status).to.eql(500);
+        expect(response.body.success).to.eql(false);
+
+        // Check if "birthday" field is in the errors array
+        var errorLength = response.body.errors.length;
+        var errorFields = [];
+        for (var i = 0; i < errorLength; i++) {
+          errorFields.push(response.body.errors[i].param);
+        }
+        if (errorFields.indexOf('birthday') === -1) fail("Birthday param should be in the error array");
+
+        done();
+      });
+  });
+
+  // Test if age is not set
+  it('Under 18', function(done){
+    superagent.post('http://localhost:8888/v1/submission/').accept('application/json').type('form')
+      .send({
+        name: 'Sandor Major',
+        email: 'airborn22@gmail.com',
+        occupation: 'Programmer'
+      })
+      .end(function(error, response) {
+        expect(error).not.to.eql(null);
+        expect(error.status).to.eql(500);
+        expect(response.body.success).to.eql(false);
+
+        // Check if "birthday" field is in the errors array
+        var errorLength = response.body.errors.length;
+        var errorFields = [];
+        for (var i = 0; i < errorLength; i++) {
+          errorFields.push(response.body.errors[i].param);
+        }
+        if (errorFields.indexOf('birthday') === -1) fail("Birthday param should be in the error array");
+
+        done();
+      });
+  });
 });
