@@ -45,6 +45,8 @@ server.use(restify.queryParser());
 server.use(restify.gzipResponse());
 server.pre(restify.pre.sanitizePath());
 server.use(restifyValidator);
+server.use(restify.CORS());
+server.use(restify.fullResponse());
 
 server.on('after', restify.auditLogger({ log: log }));
 namespace(server, '/v1', function() {
