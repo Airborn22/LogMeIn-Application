@@ -1,9 +1,9 @@
 /*jslint node: true, indent: 2 */
 'use strict';
-var util = require('util');
 
 var handler = function(req, res, next) {
   req.assert('name', 'Name field is required').notEmpty();
+  req.assert('email', 'Email field is required').notEmpty();
 
   var errors = req.validationErrors();
   if (errors) {
