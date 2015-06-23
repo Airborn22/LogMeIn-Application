@@ -14,6 +14,8 @@ describe('api test', function(){
       .end(function(error, response) {
         expect(error).to.eql(null);
         expect(typeof response.body).to.eql('object');
+
+        done();
       });
   });
 
@@ -23,6 +25,8 @@ describe('api test', function(){
       .end(function(error, response) {
         expect(error).to.eql(null);
         expect(typeof response.body).to.eql('object');
+
+        done();
       });
   });
 });
