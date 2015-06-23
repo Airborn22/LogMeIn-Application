@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "index.js",
   "dependencies": {
+    "age-calculator": "0.0.3",
     "bunyan": "^0.22.1",
     "restify": "~3.0.2",
     "restify-namespace": "^0.1.1",
