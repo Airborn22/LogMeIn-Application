@@ -8,7 +8,7 @@ var handler = function(req, res, next) {
   req.assert('email', 'Email field is required').isEmail();
 
   // Check if occupation is valid if it's set
-  if (typeof req.params.occupation !== 'undefined') {
+  if (typeof req.params.occupation !== 'undefined' && req.params.occupation.length > 0) {
     var occupationManager = new OccupationManager();
     req.assert('occupation', 'Occupation not valid').isIn(occupationManager.find(req.params.occupation));
   }
