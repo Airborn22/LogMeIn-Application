@@ -6,6 +6,7 @@ restify = require('restify');
 bunyan  = require('bunyan');
 routes  = require('./routes/');
 var namespace = require('restify-namespace');
+var restifyValidator = require('restify-validator');
 
 log = bunyan.createLogger({
   name        : 'app',
@@ -43,6 +44,7 @@ server.use(restify.bodyParser({ mapParams: false }));
 server.use(restify.queryParser());
 server.use(restify.gzipResponse());
 server.pre(restify.pre.sanitizePath());
+server.use(restifyValidator);
 
 server.on('after', restify.auditLogger({ log: log }));
 namespace(server, '/v1', function() {
