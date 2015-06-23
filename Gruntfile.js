@@ -14,7 +14,7 @@ module.exports = function (grunt) {
       },
       all     : {
         specs : [
-          "test/*.spec.js"
+          "tests/*.spec.js"
         ]
       }
     }
