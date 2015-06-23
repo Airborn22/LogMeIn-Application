@@ -21,7 +21,8 @@ server = restify.createServer({
       res.setHeader('Cache-Control', 'must-revalidate');
 
       // Does the client *explicitly* accepts application/json?
-      var sendPlainText = (req.header('Accept').split(/, */).indexOf('application/json') === -1);
+      var acceptHeader = req.header('Accept');
+      var sendPlainText = (typeof acceptHeader === 'undefined' || acceptHeader.split(/, */).indexOf('application/json') === -1);
 
       // Send as plain text
       if (sendPlainText) {
