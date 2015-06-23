@@ -4,6 +4,7 @@
 var handler = function(req, res, next) {
   req.assert('name', 'Name field is required').notEmpty();
   req.assert('email', 'Email field is required').notEmpty();
+  req.assert('email', 'Email field is required').isEmail();
 
   var errors = req.validationErrors();
   if (errors) {
