@@ -5,7 +5,7 @@ var OccupationManager = require('../manager/occupation.js');
 var handler = function(req, res, next) {
   req.assert('name', 'Name field is required').notEmpty();
   req.assert('email', 'Email field is required').notEmpty();
-  req.assert('email', 'Email field is required').isEmail();
+  req.assert('email', 'Email is not valid').isEmail();
 
   // Check if occupation is valid if it's set
   if (typeof req.params.occupation !== 'undefined' && req.params.occupation.length > 0) {
