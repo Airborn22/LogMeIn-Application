@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "logmein-application",
   "version": "0.0.0",
   "main": "index.js",
   "dependencies": {
