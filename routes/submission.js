@@ -2,6 +2,13 @@
 'use strict';
 var OccupationManager = require('../manager/occupation.js');
 
+/**
+ * Handler for the submission endpoint
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
 var handler = function(req, res, next) {
   req.assert('name', 'Name field is required').notEmpty();
   req.assert('email', 'Email field is required').notEmpty();
@@ -18,6 +25,7 @@ var handler = function(req, res, next) {
   eighteenYearsAgo.setYear(eighteenYearsAgo.getYear()-18);
   req.assert('birthday', 'You must be over 18').isDate().isBefore(eighteenYearsAgo);
 
+  // Return error 500 if the input is not valid
   var errors = req.validationErrors();
   if (errors) {
     res.send(500, {
