@@ -28,3 +28,6 @@ $ grunt
 - The frontend is a bit raw. I concentrated mainly on the backend functionality.
 - The frontend JS is not structured into modules to keep it short and simple. If the logic is getting more complex, it will need a better structure.
 - It is also possible to use any kind of frontend framework but I think it would be an overkill for this task.
+
+## Notes
+The skeleton was generated with the *restify* yeoman generator: https://github.com/chris-l/generator-restify
