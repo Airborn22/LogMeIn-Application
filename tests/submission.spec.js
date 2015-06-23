@@ -10,7 +10,7 @@ var expect = require('expect.js');
 describe('Form Submission Test', function(){
   // Test the form submission with valid data
   it('Valid form submission', function(done){
-    superagent.post('http://localhost:8888/v1/submission/')
+    superagent.post('http://localhost:8888/v1/submission/').accept('application/json').type('form')
       .send({
         name: 'Sandor Major',
         email: 'airborn22@gmail.com',
