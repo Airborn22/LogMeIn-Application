@@ -29,7 +29,7 @@ var handler = function(req, res, next) {
 
   res.send({
     success: true,
-    message: "Thank you for your submission!"
+    msg: "Thank you for your submission!"
   });
 
   next();
