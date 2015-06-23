@@ -1,6 +1,11 @@
 /*jslint node: true, indent: 2 */
 'use strict';
 
+/**
+ * Manager for the available occupations
+ *
+ * @constructor
+ */
 var OccupationManager = function() {
   this.data = [
     'Application analyst',
