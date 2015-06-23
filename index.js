@@ -5,6 +5,7 @@ var restify, bunyan, routes, log, server;
 restify = require('restify');
 bunyan  = require('bunyan');
 routes  = require('./routes/');
+var namespace = require('restify-namespace');
 
 log = bunyan.createLogger({
   name        : 'app',
@@ -44,7 +45,9 @@ server.use(restify.gzipResponse());
 server.pre(restify.pre.sanitizePath());
 
 server.on('after', restify.auditLogger({ log: log }));
-routes(server);
+namespace(server, '/v1', function() {
+  routes(server);
+});
 
 console.log('Server started.');
 server.listen(8888, function () {
