@@ -1,10 +1,16 @@
 /*jslint node: true, indent: 2 */
 'use strict';
+var OccupationManager = require('../manager/occupation.js');
 
 var handler = function(req, res, next) {
   req.assert('name', 'Name field is required').notEmpty();
   req.assert('email', 'Email field is required').notEmpty();
   req.assert('email', 'Email field is required').isEmail();
+
+  if (typeof req.params.occupation !== 'undefined') {
+    var occupationManager = new OccupationManager();
+    req.assert('occupation', 'Email field is required').isIn(occupationManager.find(req.params.occupation));
+  }
 
   var errors = req.validationErrors();
   if (errors) {
