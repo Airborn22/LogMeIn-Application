@@ -16,7 +16,6 @@
       var errorLength = result.errors.length;
       for (var i = 0; i < errorLength; i++ ) {
         $('<div class="error">'+result.errors[i].msg+'</div>').insertAfter('[name='+result.errors[i].param+']');
-        console.log( $('['+result.errors[i].param+']') );
       }
     }
   }
