@@ -35,8 +35,8 @@ describe('api test', function(){
   });
 
   // Test the occupation autocomplete with "c"
-  it('occupation autocomplate "a"', function(done){
-    superagent.get('http://localhost:8888/v1/occupation/a').accept('application/json')
+  it('occupation autocomplate "c"', function(done){
+    superagent.get('http://localhost:8888/v1/occupation/c').accept('application/json')
       .end(function(error, response) {
         expect(error).to.eql(null);
         expect(response.body).to.be.an('array');
