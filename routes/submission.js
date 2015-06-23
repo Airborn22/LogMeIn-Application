@@ -10,7 +10,7 @@ var handler = function(req, res, next) {
   // Check if occupation is valid if it's set
   if (typeof req.params.occupation !== 'undefined') {
     var occupationManager = new OccupationManager();
-    req.assert('occupation', 'Email field is required').isIn(occupationManager.find(req.params.occupation));
+    req.assert('occupation', 'Occupation not valid').isIn(occupationManager.find(req.params.occupation));
   }
 
   // Check if age is over 18
