@@ -5,11 +5,11 @@ var superagent = require('superagent');
 var expect = require('expect.js');
 
 /**
- * Test for the REST API
+ * Test for the occupation autocomplete
  */
-describe('api test', function(){
+describe('Occupation Test', function(){
   // Test the occupation autocomplete with an empty string
-  it('occupation autocomplate empty', function(done){
+  it('Text is empty', function(done){
     superagent.get('http://localhost:8888/v1/occupation/').accept('application/json')
       .end(function(error, response) {
         expect(error).to.eql(null);
@@ -35,7 +35,7 @@ describe('api test', function(){
   });
 
   // Test the occupation autocomplete with "c"
-  it('occupation autocomplate "c"', function(done){
+  it('Text is "c"', function(done){
     superagent.get('http://localhost:8888/v1/occupation/c').accept('application/json')
       .end(function(error, response) {
         expect(error).to.eql(null);
@@ -46,24 +46,6 @@ describe('api test', function(){
           'Computer scientist',
           'Computer analyst'
         ]);
-
-        done();
-      });
-  });
-
-  // Test the form submission with valid data
-  it('form submission valid', function(done){
-    superagent.post('http://localhost:8888/v1/submission/')
-      .send({
-        name: 'Sandor Major',
-        email: 'airborn22@gmail.com',
-        occupation: 'Programmer',
-        birthday: '1989-03-22'
-      })
-      .end(function(error, response) {
-        expect(error).to.eql(null);
-        expect(response.body).to.be.an('object');
-        expect(response.body.success).to.eql(true);
 
         done();
       });
