@@ -49,7 +49,7 @@
     }
   };
 
-
+  // Register LogMeInForm as jQuery extension
   $.fn.logMeInForm = function() {
     new LogMeInForm(this);
     return this;
