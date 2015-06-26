@@ -1,25 +1,5 @@
 'use strict';
-
 (function ($) {
-  function handleSuccess(data, textStatus, jqXHR) {
-    if (data.success) {
-      $('#submission-form').remove();
-      $('body').append('<p>'+data.msg+'</p>');
-    }
-  }
-
-  function handleFailure(jqXHR, textStatus, errorThrown) {
-    $('.error').remove();
-
-    var result = JSON.parse(jqXHR.responseText);
-    if (!result.success) {
-      var errorLength = result.errors.length;
-      for (var i = 0; i < errorLength; i++ ) {
-        $('<div class="error">'+result.errors[i].msg+'</div>').insertAfter('[name='+result.errors[i].param+']');
-      }
-    }
-  }
-
   $(function() {
     // Create datepicker on the birthdate field
     $('[name=birthday]').datepicker({ maxDate: "-18Y" });
@@ -42,19 +22,6 @@
     });
 
     // Submit form via AJAX
-    var form = $('#submission-form');
-    form.submit(function(e){
-      e.preventDefault();
-
-      $
-        .ajax({
-          type: 'post',
-          url: form.attr('action'),
-          data: form.serialize(),
-          dataType: 'json'
-        })
-        .done(handleSuccess)
-        .fail(handleFailure);
-    });
+    $('form').logMeInForm();
   });
 })(jQuery);
