@@ -1,5 +1,6 @@
-'use strict';
+/*jslint browser: true*/
 (function ($) {
+  "use strict";
   $(function() {
     // Create datepicker on the birthdate field
     $('[name=birthday]').datepicker({ maxDate: "-18Y" });

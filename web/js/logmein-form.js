@@ -1,5 +1,6 @@
-'use strict';
+/*jslint browser: true*/
 (function ($) {
+  "use strict";
   function LogMeInForm($form) {
     this.$form = $form;
     return this.init();
@@ -14,7 +15,7 @@
 
     this.$submit = this.$form.find('[type="submit"]');
     this.$submit.on('click.LogMeInForm', this.onSubmitClick.bind(this));
-  }
+  };
 
   LogMeInForm.prototype.onSubmitClick = function onSubmitClick(e) {
     e.preventDefault();
@@ -27,14 +28,14 @@
     })
       .done(this.handleSuccess.bind(this))
       .fail(this.handleFailure.bind(this));
-  }
+  };
 
   LogMeInForm.prototype.handleSuccess = function handleSuccess(data, textStatus, jqXHR) {
     if (data.success) {
       this.$form.remove();
       $('body').append('<p>'+data.msg+'</p>');
     }
-  }
+  };
 
   LogMeInForm.prototype.handleFailure = function handleFailure(jqXHR, textStatus, errorThrown) {
     this.$form.find('.error').remove();
@@ -46,11 +47,11 @@
         $('<div class="error">'+result.errors[i].msg+'</div>').insertAfter(this.$form.find('[name='+result.errors[i].param+']'));
       }
     }
-  }
+  };
 
 
   $.fn.logMeInForm = function() {
     new LogMeInForm(this);
     return this;
-  }
+  };
 })(jQuery);
